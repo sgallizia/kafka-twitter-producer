@@ -1,6 +1,7 @@
 package it.simonegallizia.kafkatwitter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +18,9 @@ class CustomStatusListener implements StatusListener {
 	@Autowired
 	KafkaTemplate<String, Tweet> kafkaTemplate;
 	
+	@Value("${app.kafka.topic}")
+	String topic;
+	
 	@Override
 	public void onException(Exception ex) {
 		// TODO Auto-generated method stub
@@ -30,7 +34,7 @@ class CustomStatusListener implements StatusListener {
 		tweet.setText(status.getText());
 		tweet.setAuthor(status.getUser().getName());
 		log.info("publishing tweet on kakfa " + tweet);
-		kafkaTemplate.send("b2b-events", tweet);
+		kafkaTemplate.send(topic, tweet);
 		
 		
 		
