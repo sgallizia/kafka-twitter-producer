@@ -3,8 +3,6 @@ This Spring Boot project is an example of Kafka producer. It reads sample tweets
 ## Quickstart
 You must have Kafka installed. You can install it following [this](https://github.com/wurstmeister/kafka-docker)
 
-You must have MongoDB installed.
-
 Create a Twitter Developer Account.
 
 Create a topic with Kafka:
